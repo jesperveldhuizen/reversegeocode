@@ -64,7 +64,7 @@ class ReverseGeocode
                 continue;
             }
 
-            return $address;
+            return $this->extractAddress($address['address_components']);
         }
 
         return $this->extractAddress($results[0]['address_components']);
@@ -87,7 +87,7 @@ class ReverseGeocode
                 continue;
             }
 
-            return $this->extractAddress($result['address_components']);
+            return $result;
         }
 
         return null;
