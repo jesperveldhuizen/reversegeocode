@@ -1,10 +1,10 @@
 {
     "name": "jesperveldhuizen/reversegeocode",
-    "description": "Reverse geocode to an address",
+    "description": "Reverse geocode from latitude / longitude to an address",
     "homepage": "https://github.com/jesperveldhuizen/reversegeocode",
-    "keywords": ["php", "iphone", "ios", "icloud", "findmyiphone"],
+    "keywords": ["php", "geocode", "address", "latitude", "longitude"],
     "type": "library",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "license": "Apache-2.0",
     "authors": [
         {
