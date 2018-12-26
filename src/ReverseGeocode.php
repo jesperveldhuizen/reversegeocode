@@ -2,6 +2,9 @@
 
 namespace Fieldhousen\ReverseGeocode;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+
 /**
  * Class ReverseGeocode
  */
@@ -11,6 +14,9 @@ class ReverseGeocode
     /** @var string */
     private $key;
 
+    /** @var Client */
+    private $client;
+
     /**
      * ReverseGeocode constructor.
      * @param string $key
@@ -18,6 +24,7 @@ class ReverseGeocode
     public function __construct(string $key)
     {
         $this->key = $key;
+        $this->client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/']);
     }
 
     /**
@@ -27,10 +34,16 @@ class ReverseGeocode
      */
     public function geocode(float $lat, float $lng)
     {
-        $url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&key=%s';
-        $data = file_get_contents(sprintf($url, $lat, $lng, $this->key));
+        try {
+            $url = 'geocode/json?latlng=%s,%s&key=%s';
+            $response = $this->client->request('GET', sprintf($url, $lat, $lng, $this->key));
+        } catch (\Exception | GuzzleException $e) {
+            return [
+                'error' => $e->getMessage()
+            ];
+        }
 
-        $result = \json_decode($data, true);
+        $result = \json_decode($response->getBody()->getContents(), true);
         if (empty($result) || empty($result['results'])) {
             return null;
         }
