@@ -1,0 +1,24 @@
+{
+    "name": "jesperveldhuizen/reversegeocode",
+    "description": "Reverse geocode to an address",
+    "homepage": "https://github.com/jesperveldhuizen/reversegeocode",
+    "keywords": ["php", "iphone", "ios", "icloud", "findmyiphone"],
+    "type": "library",
+    "version": "1.0.1",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Jesper Veldhuizen",
+            "email": "info@jesperveldhuizen.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fieldhousen\\ReverseGeocode\\": "src/"
+        }
+    }
+}
