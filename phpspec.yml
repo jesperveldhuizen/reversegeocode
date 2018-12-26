@@ -4,5 +4,4 @@ suites:
   app:
     namespace: Fieldhousen\ReverseGeocode
     psr4_prefix: Fieldhousen\ReverseGeocode
-    spec_path:
     src_path: src
