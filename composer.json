@@ -4,7 +4,7 @@
     "homepage": "https://github.com/jesperveldhuizen/reversegeocode",
     "keywords": ["php", "geocode", "address", "latitude", "longitude"],
     "type": "library",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -14,7 +14,8 @@
     ],
     "require": {
         "php": ">=7.1",
-        "ext-json": "*"
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "autoload": {
         "psr-4": {

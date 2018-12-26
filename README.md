@@ -3,6 +3,12 @@ reversegeocode
 
 This is a very small library to find your address by geo latitude / longitude.
 
+## Installation
+
+```
+composer require jesperveldhuizen/reversegeocode
+```
+
 ## Usage
 
 ```php
