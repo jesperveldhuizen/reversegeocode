@@ -49,11 +49,62 @@ class ReverseGeocode
             return null;
         }
 
+        $types = [
+            'route',
+            'street_address',
+            'point_of_interest',
+            'postal_code',
+            'locality',
+        ];
+
+        $results = $result['results'];
+        foreach ($types as $type) {
+            $address = $this->findByType($results, $type);
+            if (null === $address) {
+                continue;
+            }
+
+            return $address;
+        }
+
+        return $this->extractAddress($results[0]['address_components']);
+    }
+
+    /**
+     * @param array  $results
+     * @param string $type
+     *
+     * @return array|null
+     */
+    private function findByType(array $results, string $type)
+    {
+        if (empty($results)) {
+            return null;
+        }
+
+        foreach ($results as $result) {
+            if (!in_array($type, $result['types'])) {
+                continue;
+            }
+
+            return $this->extractAddress($result['address_components']);
+        }
+
+        return null;
+    }
+
+    /**
+     * @param array $components
+     *
+     * @return array
+     */
+    private function extractAddress(array $components)
+    {
         $street = null;
         $city = null;
         $country = null;
 
-        foreach ($result['results'][0]['address_components'] as $component) {
+        foreach ($components as $component) {
             if (in_array('route', $component['types'])) {
                 $street = $component['long_name'];
             }
