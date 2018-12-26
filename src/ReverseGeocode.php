@@ -6,11 +6,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
- * Class ReverseGeocode
+ * Class ReverseGeocode.
  */
 class ReverseGeocode
 {
-
     /** @var string */
     private $key;
 
@@ -19,6 +18,7 @@ class ReverseGeocode
 
     /**
      * ReverseGeocode constructor.
+     *
      * @param string $key
      */
     public function __construct(string $key)
@@ -30,6 +30,7 @@ class ReverseGeocode
     /**
      * @param float $lat
      * @param float $lng
+     *
      * @return array|null
      */
     public function geocode(float $lat, float $lng)
@@ -39,7 +40,7 @@ class ReverseGeocode
             $response = $this->client->request('GET', sprintf($url, $lat, $lng, $this->key));
         } catch (\Exception | GuzzleException $e) {
             return [
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ];
         }
 
@@ -69,7 +70,7 @@ class ReverseGeocode
         return [
             'street' => $street,
             'city' => $city,
-            'country' => $country
+            'country' => $country,
         ];
     }
 }
