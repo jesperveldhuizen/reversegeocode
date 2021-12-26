@@ -4,8 +4,6 @@
     "homepage": "https://github.com/jesperveldhuizen/reversegeocode",
     "keywords": ["php", "geocode", "address", "latitude", "longitude"],
     "type": "library",
-    "version": "1.0.2",
-    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Jesper Veldhuizen",
@@ -13,14 +11,24 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": "^8.0",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "~6.0",
-        "phpspec/phpspec": "^5.1"
+        "symfony/http-client": "^5.4 | ^6.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "2.18.*",
+        "phpstan/phpstan": "^1.0",
+        "symplify/easy-coding-standard": "9.2.*",
+        "symplify/symplify-kernel": "9.2.*"
     },
     "autoload": {
         "psr-4": {
             "Fieldhousen\\ReverseGeocode\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
         }
     }
 }

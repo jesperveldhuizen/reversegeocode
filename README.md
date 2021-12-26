@@ -1,36 +1,26 @@
-reversegeocode
-================
+# ReverseGeocoder
 
-This is a very small library to find your address by geo latitude / longitude.
+### Local install
 
-## Installation
-
+```bash
+cd qlico
+docker-compose build --pull --no-cache
+cd ..
+make up
+make shell
+composer install
 ```
+
+### Installation in project
+
+```bash
 composer require jesperveldhuizen/reversegeocode
 ```
 
-## Usage
+### Usage
 
-```php
-<?php
+See test.php for example.
 
-namespace Fieldhousen\ReverseGeocode;
-
-require_once 'vendor/autoload.php';
-
-$geocoder = new ReverseGeocode(':key');
-
-echo '<pre>';
-print_r($geocoder->geocode(':lat', ':lng'));
-```
-
-It returns:
-
-```php
-Array
-(
-    [street] => *
-    [city] => *
-    [country] => *
-)
+```bash
+php test.php :key :lat :lng
 ```

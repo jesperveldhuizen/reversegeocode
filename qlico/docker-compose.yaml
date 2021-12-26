@@ -1,0 +1,21 @@
+# Author: Qlico <hello@qlico.dev>
+---
+version: "3.9"
+services:
+  php:
+    build:
+      context: ../
+      target: dev
+    container_name: ${PROJECT_NAME}_php
+    volumes:
+      - ../:/var/www/html
+      - ~/.composer:/home/qlico/.composer
+    environment:
+      - PHP_IDE_CONFIG=serverName=${PROJECT_NAME}
+    networks:
+      - qlico-core
+    env_file:
+      - .env
+networks:
+  qlico-core:
+    name: qlico-core

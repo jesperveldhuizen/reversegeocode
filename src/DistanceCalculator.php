@@ -1,24 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Fieldhousen\ReverseGeocode;
 
-/**
- * Class DistanceCalculator.
- */
 class DistanceCalculator
 {
-    /** @var int */
     private const EARTH_RADIUS = 6371000;
 
-    /**
-     * @param float $latitudeFrom
-     * @param float $longitudeFrom
-     * @param float $latitudeTo
-     * @param float $longitudeTo
-     *
-     * @return float
-     */
-    public static function calculate(float $latitudeFrom, float $longitudeFrom, float $latitudeTo, float $longitudeTo)
+    public static function calculate(float $latitudeFrom, float $longitudeFrom, float $latitudeTo, float $longitudeTo): float
     {
         $latFrom = deg2rad($latitudeFrom);
         $lonFrom = deg2rad($longitudeFrom);
@@ -28,7 +18,7 @@ class DistanceCalculator
         $latDelta = $latTo - $latFrom;
         $lonDelta = $lonTo - $lonFrom;
 
-        $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) + cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+        $angle = 2 * asin(sqrt(sin($latDelta / 2) ** 2 + cos($latFrom) * cos($latTo) * sin($lonDelta / 2) ** 2));
 
         return round($angle * self::EARTH_RADIUS, 2);
     }

@@ -1,7 +1,0 @@
-formatter.name: pretty
-
-suites:
-  app:
-    namespace: Fieldhousen\ReverseGeocode
-    psr4_prefix: Fieldhousen\ReverseGeocode
-    src_path: src
