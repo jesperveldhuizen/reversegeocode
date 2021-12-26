@@ -17,7 +17,7 @@ class ReverseGeocoder
     ) {
     }
 
-    public function geocode(float $lat, float $lng): Address
+    public function geocode(float $lat, float $lng): ?Address
     {
         $client = HttpClient::createForBaseUri(self::MAPS_URL, [
             'verify_host' => false,
@@ -32,6 +32,9 @@ class ReverseGeocoder
         }
 
         $body = json_decode($response->getContent(), true);
+        if (!isset($body['results']) || count($body['results']) === 0) {
+            return null;
+        }
 
         $types = [
             'point_of_interest',
@@ -56,7 +59,7 @@ class ReverseGeocoder
 
     private function findByType(array $results, string $type): ?array
     {
-        if (empty($results)) {
+        if (count($results) === 0) {
             return null;
         }
 
