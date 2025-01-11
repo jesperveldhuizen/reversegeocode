@@ -97,6 +97,10 @@ class ReverseGeocoder
             if (in_array('country', $component['types'])) {
                 $country = $component['short_name'];
             }
+
+            if ($city === null && in_array('postal_town', $component['types'])) {
+                $city = $component['postal_town'];
+            }
         }
 
         return new Address($street, $streetNr, $city, $country);
