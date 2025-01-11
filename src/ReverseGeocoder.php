@@ -99,7 +99,7 @@ class ReverseGeocoder
             }
 
             if ($city === null && in_array('postal_town', $component['types'])) {
-                $city = $component['postal_town'];
+                $city = $component['long_name'];
             }
         }
 
